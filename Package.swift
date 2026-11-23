@@ -10,6 +10,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "RecipeCore"),
-        .executableTarget(name: "RecipeManagerApp", dependencies: ["RecipeCore"])
+        .executableTarget(name: "RecipeManagerApp", dependencies: ["RecipeCore"]),
+        .testTarget(name: "RecipeCoreTests", dependencies: ["RecipeCore"], resources: [.copy("Fixtures")])
     ]
 )

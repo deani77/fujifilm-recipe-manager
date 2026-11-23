@@ -23,3 +23,9 @@ The shell shows the target camera, four bank labels and unverified USB status. I
 Do not add generic “read all slots” to the read-only interface if it changes `0xD18C`. Selector operations need a separate authorization boundary even if their purpose is reading. Keep local library features usable when the camera is unsupported or disconnected.
 
 Potential iPhone support should reuse domain documents and validation rules. App lifecycle, document access, discovery, USB permissions and camera transport remain separate work. Do not promise an iOS USB feature based on the Mac scaffold.
+
+## Phase 2 implementation
+
+The earlier structure and proposed boundaries above describe the Phase 1 foundation. Phase 2 now adds RecipeDocument/JSONValue, LibraryRepository, RecipeParameter and the bounded identity decoder in RecipeCore; SwiftUI library/editor and a macOS-only CameraInspector in RecipeManagerApp; synthetic XCTest fixtures; Packaging/ and Scripts/package-app.sh. The identity adapter cannot accept arbitrary PTP commands. It is intentionally not a recipe transport.
+
+LibraryModel commits to disk before publishing the candidate in-memory state. Draft edits stay inside the editor until an explicit save. Local import/export use security-scoped user-selected URLs for the sandboxed bundle. Domain code remains independent of SwiftUI and ImageCaptureCore. See LIBRARY_FORMAT.md and PHASE2_VALIDATION.md for the implemented contracts and limits.

@@ -1,30 +1,47 @@
 # Fujifilm Recipe Manager
 
-Offline-first recipe manager planned for macOS using Swift and SwiftUI, initially targeting the Fujifilm X-M5. Shared domain code may support an iPhone app later; iPhone USB support is not established.
+An offline-first macOS recipe notebook built with Swift and SwiftUI, initially targeting the Fujifilm X-M5. Create, edit, search, duplicate, import and export recipes on your Mac. No account or internet connection is required.
 
-**Phase 1: research and project initialisation. USB C1–C4 reading, uploading, backup and restoration have not been verified on an X-M5.** The current app is an informational shell with no camera, network, persistence or recipe-editing implementation.
+**Phase 2: offline library and experimental identity inspector. X-M5 C1–C4 USB recipe reading and uploading remain unverified and are not implemented.** Camera testing is deferred until the owner has an untouched official settings backup. No camera settings have been changed.
 
-## Build
+## Build and run
 
-Requires macOS 14 or later and Xcode 15 / Swift 5.9 or later.
+Requires macOS 14+ and Xcode 15 / Swift 5.9+.
 
 ```sh
-swift build
+swift test
 swift run RecipeManager
 ```
 
-Open `Package.swift` in Xcode to inspect the package. This is a Swift package executable, not a signed, sandboxed application bundle or distributable installer. Packaging, entitlements and device permissions will need their own validation.
+To create an ad-hoc signed, sandboxed application bundle:
+
+```sh
+Scripts/package-app.sh
+unzip "dist/Fujifilm-Recipe-Manager-macOS-$(uname -m).zip" -d /tmp/RecipeManagerPreview
+open "/tmp/RecipeManagerPreview/Fujifilm Recipe Manager.app"
+```
+
+The script signs in a temporary folder and outputs a ZIP, avoiding cloud-sync metadata being attached to a loose bundle before archiving. Extract into a local folder (such as Downloads) to run it. The bundle includes USB and user-selected-file entitlements, with no network entitlements. It is a development build, not notarized or signed for public distribution. Builds target the current host architecture. Open `Package.swift` in Xcode to inspect the source.
+
+## Library
+
+Use **New recipe**, enter the recipe and attribution, then **Save recipe**. Blank settings remain unspecified; numbers use display units rather than PTP values. No recipe is assigned to or uploaded to a camera bank. Unsupported/imported fields are retained. Use your camera menus for manual entry.
+
+The **Library** menu imports or exports versioned Recipe Manager JSON. Import adds all entries or fails without changes if IDs or library metadata conflict. Exports are local recipe documents, **not camera settings backups**. See [document format and storage](docs/LIBRARY_FORMAT.md) for details, migration and file recovery.
+
+## Camera inspector
+
+Opening the inspector does not start scanning. A future owner-led test requires an official backup acknowledgement, then an explicit scan and identity request. Only local Fujifilm USB devices are listed. The sole PTP command is GetDeviceInfo; the serial number is discarded. There is no bank-selector, capture, tether-enable, restore or settings-write API. No hardware compatibility is claimed from parser tests or bundle signing.
 
 ## Documentation
 
-- [Feasibility and evidence](docs/FEASIBILITY.md)
+- [Phase 1 feasibility and evidence](docs/FEASIBILITY.md)
 - [Open-source and licence review](docs/LICENSING.md)
-- [Architecture and project structure](docs/ARCHITECTURE.md)
-- [Backup safety and future validation](docs/SAFETY.md)
-- [Phase boundaries and acceptance](docs/ROADMAP.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Backup safety](docs/SAFETY.md)
+- [Phase boundaries](docs/ROADMAP.md)
+- [Phase 2 validation and limitations](docs/PHASE2_VALIDATION.md)
 
-The repository was inspected at initial commit `e4dd976`: only a brief README existed, with no app, build setup, licence or repository agent instructions. Phase 1 adds an original project shell without third-party dependencies or copied implementation code. A project distribution licence remains an owner decision.
+The initial repository contained only a short README. The implementation has no third-party code or dependencies. A project distribution licence remains an owner decision; public visibility alone does not select one. Potential iPhone support can reuse domain documents but still needs a separate app and transport investigation.
 
-No camera was accessed or modified in Phase 1. Do not run upstream camera tools as a substitute for the gated validation plan. In particular, some routines labelled “read” write a slot selector.
-
-Phase 2 requires explicit owner approval. The Phase 1 PR must not be merged without approval.
+PRs remain subject to owner approval before merging. Phase 2 does not authorize camera writes, selector changes or restoration experiments.

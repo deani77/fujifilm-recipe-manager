@@ -26,3 +26,9 @@ If USB remains unsupported, the offline library and manual camera-entry workflow
 ## Owner gate
 
 Review the Phase 1 PR and findings before starting Phase 2. No merge, Phase 2 implementation, camera test or write experiment is authorized by this Phase 1 task.
+
+## Phase 2 authorization and delivery update
+
+The owner approved Phase 2 on 23 November 2026, then confirmed no official backup is available and deferred camera testing. The offline library, synthetic tests, app packaging and identity-inspector implementation proceed under that approval. The camera-test portion remains deferred. Phase 1's original owner gate is historical; development approval does not authorize merging either PR. No settings-write or selector experiment is authorized.
+
+See PHASE2_VALIDATION.md for delivered scope and evidence. A later owner-led camera test requires the backup/safety prerequisites, with explicit approval for any mode changes or state-changing experiments.

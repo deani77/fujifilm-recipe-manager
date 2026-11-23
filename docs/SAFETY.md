@@ -28,3 +28,7 @@ When recovery is authorized, restore from the original unedited backup through t
 ## Data handling
 
 Camera backups, raw dumps, photos, serials and local recipes stay outside source control. `.gitignore` provides local-data/backups/captures exclusions and common camera-file exclusions; it is not a substitute for reviewing staged files. Only synthetic, redacted fixtures may be committed later. The app must remain functional offline and must not upload diagnostics automatically.
+
+## Phase 2 status
+
+The owner approved software development but deferred camera testing until an official backup exists. The identity inspector is implemented and compiled; no discovery or USB session was executed. Opening its sheet does not start discovery. Its only raw command is GetDeviceInfo with no data-out payload; it cannot select banks or write settings. No camera-backup archive or restore feature is included.
