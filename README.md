@@ -2,7 +2,7 @@
 
 An offline-first macOS recipe notebook built with Swift and SwiftUI, initially targeting the Fujifilm X-M5. Create, edit, search, duplicate, import and export recipes on your Mac. No account or internet connection is required.
 
-**Phase 2: offline library and experimental identity inspector. X-M5 C1–C4 USB recipe reading and uploading remain unverified and are not implemented.** Camera testing is deferred until the owner has an untouched official settings backup. No camera settings have been changed.
+**Offline library, experimental identity inspector, and offline USB protocol foundation. X-M5 C1–C4 USB recipe access remains locally unverified; camera import/upload is not implemented.** Camera testing is deferred until the owner has an untouched official settings backup. No camera settings have been changed.
 
 ## Build and run
 
@@ -35,6 +35,7 @@ Opening the inspector does not start scanning. A future owner-led test requires 
 
 ## Documentation
 
+- [X-M5 USB protocol, evidence and implementation boundaries](docs/USB_PROTOCOL.md)
 - [Phase 1 feasibility and evidence](docs/FEASIBILITY.md)
 - [Open-source and licence review](docs/LICENSING.md)
 - [Architecture](docs/ARCHITECTURE.md)

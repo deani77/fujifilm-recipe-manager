@@ -29,3 +29,11 @@ Potential iPhone support should reuse domain documents and validation rules. App
 The earlier structure and proposed boundaries above describe the Phase 1 foundation. Phase 2 now adds RecipeDocument/JSONValue, LibraryRepository, RecipeParameter and the bounded identity decoder in RecipeCore; SwiftUI library/editor and a macOS-only CameraInspector in RecipeManagerApp; synthetic XCTest fixtures; Packaging/ and Scripts/package-app.sh. The identity adapter cannot accept arbitrary PTP commands. It is intentionally not a recipe transport.
 
 LibraryModel commits to disk before publishing the candidate in-memory state. Draft edits stay inside the editor until an explicit save. Local import/export use security-scoped user-selected URLs for the sandboxed bundle. Domain code remains independent of SwiftUI and ImageCaptureCore. See LIBRARY_FORMAT.md and PHASE2_VALIDATION.md for the implemented contracts and limits.
+
+## USB protocol foundation — 27 November 2026
+
+RecipeCore now also contains an offline Fujifilm bank-property catalog and
+strict payload decoders. They have no transport dependency, command encoder,
+selector API or writer. CameraInspector still sends only its fixed identity
+request. The reported X-M5 profile is explicitly not locally hardware-validated.
+See [USB_PROTOCOL.md](USB_PROTOCOL.md) for evidence and the next boundaries.
