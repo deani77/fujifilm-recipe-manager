@@ -23,3 +23,7 @@ Fujifilm PTP reference at `d78c79b7558169bace8cace483daf6975eb148aa` (CC BY 4.0)
 license, modifications and the upstream warranty disclaimer. Decoder code and
 synthetic tests are original; no upstream implementation or new dependency is
 included. This does not select a license for the whole project.
+
+## Camera import — 27 November 2026
+
+The import's display tables additionally adapt the same pinned CC BY 4.0 reference's `docs/03-encodings.md`, and callback design cites `docs/09-platform-notes.md`. CAMERA_IMPORT_VALIDATION.md records attribution and modifications and links the source and disclaimer. Native adapter and reader code are original; no upstream executable code or dependency was added.

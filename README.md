@@ -2,7 +2,7 @@
 
 An offline-first macOS recipe notebook built with Swift and SwiftUI, initially targeting the Fujifilm X-M5. Create, edit, search, duplicate, import and export recipes on your Mac. No account or internet connection is required.
 
-**Offline library, experimental identity inspector, and offline USB protocol foundation. X-M5 C1–C4 USB recipe access remains locally unverified; camera import/upload is not implemented.** Camera testing is deferred until the owner has an untouched official settings backup. No camera settings have been changed.
+**Offline library, identity inspector, and experimental X-M5 camera-to-JSON import. C1–C4 import was tested on firmware 1.30. Sending recipes to the camera remains unimplemented.** Import changes only the edit-bank selector and restores its original value; it does not write recipe settings.
 
 ## Build and run
 
@@ -28,6 +28,18 @@ The script signs in a temporary folder and outputs a ZIP, avoiding cloud-sync me
 Use **New recipe**, enter the recipe and attribution, then **Save recipe**. Blank settings remain unspecified; numbers use display units rather than PTP values. No recipe is assigned to or uploaded to a camera bank. Unsupported/imported fields are retained. Use your camera menus for manual entry.
 
 The **Library** menu imports or exports versioned Recipe Manager JSON. Import adds all entries or fails without changes if IDs or library metadata conflict. Exports are local recipe documents, **not camera settings backups**. See [document format and storage](docs/LIBRARY_FORMAT.md) for details, migration and file recovery.
+
+## Import recipes from the X-M5
+
+A separate developer utility reads C1–C4 and creates JSON for the existing **Library → Import JSON…** action. Keep an untouched official settings backup, select **USB RAW CONV./BACKUP RESTORE** on the camera, and close other camera apps first. It accepts only X-M5 firmware 1.30 and an original selector within C1–C4.
+
+```sh
+swift run RecipeCameraImport --backup-confirmed --output /absolute/path/X-M5-Recipes.json
+```
+
+Use a new output path. The utility changes the edit selector, verifies each selection, reads each bank, then restores and verifies the original selector before exporting. On a timeout or disconnect it invalidates the transport and reports unconfirmed restoration if it cannot verify recovery; it does not blindly retry. It never writes names or recipe settings. It does not merge into the live library automatically.
+
+The export retains raw properties, missing-field information and provisional display mappings. Compare the imported values with the camera menus. It does not include custom WB calibration, every WB mode's shifts, still/movie assignment, or the entire camera configuration; it is **not a settings backup**. See [hardware validation and limits](docs/CAMERA_IMPORT_VALIDATION.md).
 
 ## Camera inspector
 

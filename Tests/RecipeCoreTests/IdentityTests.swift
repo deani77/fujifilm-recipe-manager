@@ -18,6 +18,20 @@ final class IdentityTests: XCTestCase {
         let container = Data(u32(UInt32(dataset.count + 12)) + u16(2) + u16(0x1001) + u32(1)) + dataset
         XCTAssertEqual(try IdentityRequest.decode(data: container, response: response), identity)
     }
+    func testFrameworkCallbackCanUseRenumberedWireTransaction() throws {
+        var wireResponse = response; wireResponse[8] = 0x79; wireResponse[9] = 0x0D
+        let wireID = try PTPCallbackResponse.wireTransaction(in: wireResponse)
+        XCTAssertEqual(wireID, 3449)
+        XCTAssertThrowsError(try IdentityRequest.decode(data: dataset, response: wireResponse))
+        XCTAssertEqual(try IdentityRequest.decode(data: dataset, response: wireResponse, expectedTransaction: wireID).model, "X-M5")
+        let wrapped = Data(u32(UInt32(dataset.count + 12)) + u16(2) + u16(0x1001) + u32(wireID)) + dataset
+        XCTAssertEqual(try IdentityRequest.decode(data: wrapped, response: wireResponse, expectedTransaction: wireID).model, "X-M5")
+        let wrong = Data(u32(UInt32(dataset.count + 12)) + u16(2) + u16(0x1001) + u32(1)) + dataset
+        XCTAssertThrowsError(try IdentityRequest.decode(data: wrong, response: wireResponse, expectedTransaction: wireID))
+        for length in 0..<response.count {
+            XCTAssertThrowsError(try PTPCallbackResponse.wireTransaction(in: Data(response.prefix(length))))
+        }
+    }
     func testTruncationResponseMismatchAndBadLengthsFailClosed() throws {
         for length in 0..<dataset.count {
             XCTAssertThrowsError(try IdentityRequest.decode(data: Data(dataset.prefix(length)), response: response))

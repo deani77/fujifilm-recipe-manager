@@ -1,6 +1,6 @@
 import Foundation
 
-/// Offline protocol vocabulary only: no session, command builder, or data-out API.
+/// Protocol vocabulary; selector-only import commands live in CameraBankImport.swift.
 /// Mapping provenance and limitations: docs/USB_PROTOCOL.md.
 public enum FujifilmBankProperty: UInt16, CaseIterable {
     case selector = 0xD18C, name = 0xD18D
@@ -14,12 +14,14 @@ public enum FujifilmBankProperty: UInt16, CaseIterable {
     case lensModulationOptimizer = 0xD1A3, colorSpace = 0xD1A4
 }
 
-/// Reported profile, not a declaration that a connected camera has been validated.
+/// X-M5 profile. Bank reading was tested locally; recipe writes remain unverified.
 public enum XM5ProtocolReference {
     public static let usbVendorID: UInt16 = 0x04CB
     public static let observedUSBProductID: UInt16 = 0x030C
     public static let reportedFirmware = "1.30"
     public static let customBanks: ClosedRange<UInt16> = 1...4
+    public static let locallyValidatedRecipeRead = true
+    /// Complete read/write access has not been validated.
     public static let locallyValidatedRecipeAccess = false
 }
 

@@ -70,7 +70,7 @@ struct LibraryView: View {
                             Text("Notes").font(.headline)
                             Text(selected[text: "notes"])
                         }
-                        Text("X-M5 · C1–C4 USB access is unverified. Use the camera menus for manual entry.")
+                        Text("X-M5 · C1–C4 import tested on firmware 1.30. Sending recipes to the camera is unavailable.")
                             .font(.callout).foregroundStyle(.secondary)
                         Text("Recipe exports are not camera settings backups.").font(.caption).foregroundStyle(.secondary)
                     }.padding(32).frame(maxWidth: 820, alignment: .leading).frame(maxWidth: .infinity, alignment: .leading)

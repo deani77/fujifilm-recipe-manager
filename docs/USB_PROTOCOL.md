@@ -96,3 +96,7 @@ Fujifilm's separate [Camera Control SDK](https://www.fujifilm-x.com/global/camer
 lists the X-M5 for image transfer/basic controls, but that does not establish
 custom-bank APIs. Its proprietary license and individual-use warranty warning
 need separate review if that SDK is considered. It is not included here.
+
+## Camera-to-JSON import milestone — 27 November 2026
+
+The foundation-only status above describes the original protocol PR. A separate manual `RecipeCameraImport` utility now implements identity validation, selector-only C1–C4 reads, verified restoration and JSON export. Bank reading was successful on the owner's X-M5 firmware 1.30. Recipe writes remain absent. See [CAMERA_IMPORT_VALIDATION.md](CAMERA_IMPORT_VALIDATION.md) for observed results, callback correlation, attribution and limitations.
