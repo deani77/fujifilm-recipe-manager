@@ -4,7 +4,7 @@
 DerivedData/
 *.xcuserstate
 xcuserdata/
-# Real camera data stays local, even in this private repository.
+# Real camera data stays local, including in public branches.
 local-data/
 backups/
 captures/
@@ -13,3 +13,4 @@ captures/
 *.RAF
 *.raf
 *.log
+dist/

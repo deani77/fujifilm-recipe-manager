@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "collectionNote": {"nested": [true, null, {"precise": 1.25}]},
+  "recipes": [{
+    "id": "00000000-0000-0000-0000-000000000001",
+    "name": "Synthetic fixture",
+    "author": "Test author",
+    "futureMetadata": {"keep": "unchanged"},
+    "parameters": {"highlight": -1.5, "futureParameter": {"values": [1, 2, 3]}, "color": 0}
+  }]
+}

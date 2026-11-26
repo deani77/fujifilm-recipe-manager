@@ -9,5 +9,7 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
-      - name: Build SwiftUI shell
-        run: swift build
+      - name: Build and test offline library
+        run: swift test
+      - name: Package sandboxed app
+        run: Scripts/package-app.sh

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 0,
+  "futureRoot": "retain me",
+  "recipes": [{
+    "id": "00000000-0000-0000-0000-000000000002",
+    "name": "Synthetic legacy fixture",
+    "notes": "Not a real recipe",
+    "settings": {"highlight": 0.5, "unknown": "retained"}
+  }]
+}
