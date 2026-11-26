@@ -1,0 +1,16 @@
+# Licence review — 23 November 2026
+
+No external code, camera database, recipe collection, binary or dependency is included in Phase 1. The Swift scaffold is original. This private repository had no licence; no project-wide distribution licence has been selected on the owner's behalf.
+
+| Candidate and reviewed revision | Licence evidence | Reuse decision |
+| --- | --- | --- |
+| FujiSync `ec570e91c2713332480a28cd5765d7df26c8e4a9` | [MIT, copyright 2026 FujiSync Contributors](https://github.com/ILFforever/FujiSync/blob/ec570e91c2713332480a28cd5765d7df26c8e4a9/LICENSE) | Eligible for later adaptation with copyright and permission notice retained in copies/substantial portions; Android transport cannot be used directly in Swift. No code reused now. |
+| Fuji PTP Recipes `6bb63c9007a497111ae38d1a363ae30be98a0fd9` | [Documentation CC BY 4.0; example code MIT](https://github.com/ILFforever/fujifilm-ptp-recipes/blob/6bb63c9007a497111ae38d1a363ae30be98a0fd9/LICENSE) | Separate documentation attribution from code notices. Our feasibility report attributes its summaries and identifies adaptations. Future adapted snippets must retain MIT notices. |
+| libpict `753a1c6f5b49fb7c006215b26c8c915da965c782` | [Apache 2.0](https://github.com/petabyt/libpict/blob/753a1c6f5b49fb7c006215b26c8c915da965c782/LICENSE); README separately notes MIT lua-cjson | Defer dependency. Later reuse requires licence copy, retained notices, marking changed files, applicable NOTICE handling, and a transitive/component audit. |
+| libfuji `59034fb7aa26a7a62f9c20e2f5f9442454753c1f` | [MIT, copyright 2026 Daniel Cook](https://github.com/petabyt/libfuji/blob/59034fb7aa26a7a62f9c20e2f5f9442454753c1f/LICENSE) | Useful research reference. Any later reuse needs MIT notices plus audit of libpict, furble and selected backend dependencies. |
+| libgphoto2 `6d5c61ef7687b74fe792e4aeae7fc40f2ad42d88` | [Root LGPL 2.1 text](https://github.com/gphoto/libgphoto2/blob/6d5c61ef7687b74fe792e4aeae7fc40f2ad42d88/COPYING); [PTP driver header says LGPL v2 or later](https://github.com/gphoto/libgphoto2/blob/6d5c61ef7687b74fe792e4aeae7fc40f2ad42d88/camlibs/ptp2/library.c) | No copying/linking in scaffold. Evaluate exact selected files, library modifications, notices, source availability and relinking obligations before distributing a linked app. Do not treat LGPL as permissive MIT. |
+| Apple ImageCaptureCore | Apple SDK/framework and documentation | Native platform option, not an open-source library to relicense. Use under applicable SDK terms. No Fujifilm SDK or proprietary binaries included. |
+
+[CC BY 4.0 terms](https://creativecommons.org/licenses/by/4.0/) govern attributed documentation reuse. Links to upstream projects are references, not claims that their licences cover Fujifilm proprietary data, trademarks, SDKs or third-party recipe text/images. A future recipe library must retain user-provided authorship/source information and avoid bundling scraped collections without permission.
+
+Before code reuse: pin the exact revision and files, check file headers and dependencies, record modifications, add required notices/licence texts, and decide the project's own distribution licence. Review separately if an App Store or iPhone distribution route is chosen. No blanket warranty conclusion is drawn from upstream project disclaimers.

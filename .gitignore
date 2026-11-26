@@ -1,0 +1,15 @@
+.DS_Store
+.build/
+.swiftpm/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+# Real camera data stays local, even in this private repository.
+local-data/
+backups/
+captures/
+*.dat
+*.DAT
+*.RAF
+*.raf
+*.log
