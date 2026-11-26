@@ -14,3 +14,12 @@ No external code, camera database, recipe collection, binary or dependency is in
 [CC BY 4.0 terms](https://creativecommons.org/licenses/by/4.0/) govern attributed documentation reuse. Links to upstream projects are references, not claims that their licences cover Fujifilm proprietary data, trademarks, SDKs or third-party recipe text/images. A future recipe library must retain user-provided authorship/source information and avoid bundling scraped collections without permission.
 
 Before code reuse: pin the exact revision and files, check file headers and dependencies, record modifications, add required notices/licence texts, and decide the project's own distribution licence. Review separately if an App Store or iPhone distribution route is chosen. No blanket warranty conclusion is drawn from upstream project disclaimers.
+
+## USB protocol foundation — 27 November 2026
+
+The protocol note and Swift property catalog attribute zgrimz and contributors'
+Fujifilm PTP reference at `d78c79b7558169bace8cace483daf6975eb148aa` (CC BY 4.0).
+[USB_PROTOCOL.md](USB_PROTOCOL.md#sources-and-attribution) records source links,
+license, modifications and the upstream warranty disclaimer. Decoder code and
+synthetic tests are original; no upstream implementation or new dependency is
+included. This does not select a license for the whole project.
