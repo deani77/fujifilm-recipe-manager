@@ -65,8 +65,11 @@ final class CameraInspector: NSObject, ObservableObject, ICDeviceBrowserDelegate
                         guard let self, let camera, self.token == operation else { return }
                         do {
                             if error != nil { throw LibraryError.invalid("PTP identity request failed") }
-                            self.identity = try IdentityRequest.decode(data: data, response: response)
-                            self.finish(camera, message: "Identity read complete. USB recipe access remains unverified. Serial number discarded.")
+                            // The framework may renumber wire transactions. The operation token
+                            // above correlates this callback; wrapped data must match its response.
+                            let wireTransaction = try PTPCallbackResponse.wireTransaction(in: response)
+                            self.identity = try IdentityRequest.decode(data: data, response: response, expectedTransaction: wireTransaction)
+                            self.finish(camera, message: "Identity read complete. Serial number discarded. Use the separate utility for recipe import.")
                         } catch { self.finish(camera, message: error.localizedDescription) }
                     }
                 }

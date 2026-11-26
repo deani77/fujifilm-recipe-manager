@@ -13,13 +13,13 @@ public enum IdentityRequest {
     public static var command: Data {
         Data([12, 0, 0, 0, 1, 0, 1, 16, 1, 0, 0, 0])
     }
-    public static func decode(data: Data, response: Data) throws -> CameraIdentity {
+    public static func decode(data: Data, response: Data, expectedTransaction: UInt32 = transaction) throws -> CameraIdentity {
         guard data.count <= 1024 * 1024, response.count >= 12, response.count <= 32, (response.count - 12) % 4 == 0 else {
             throw LibraryError.invalid("invalid PTP response size")
         }
         var r = Cursor(response)
         let length = try r.u32()
-        guard length == response.count, try r.u16() == 3, try r.u16() == 0x2001, try r.u32() == transaction else {
+        guard length == response.count, try r.u16() == 3, try r.u16() == 0x2001, try r.u32() == expectedTransaction else {
             throw LibraryError.invalid("PTP response failed or transaction did not match")
         }
         var payload = data
@@ -29,7 +29,7 @@ public enum IdentityRequest {
         if header.count == 12, header[4] == 2, header[5] == 0 {
             var container = Cursor(data)
             guard try container.u32() == data.count, try container.u16() == 2,
-                  try container.u16() == 0x1001, try container.u32() == transaction else {
+                  try container.u16() == 0x1001, try container.u32() == expectedTransaction else {
                 throw LibraryError.invalid("invalid PTP data container")
             }
             payload = Data(data.dropFirst(12))

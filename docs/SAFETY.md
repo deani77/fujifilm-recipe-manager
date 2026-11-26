@@ -32,3 +32,7 @@ Camera backups, raw dumps, photos, serials and local recipes stay outside source
 ## Phase 2 status
 
 The owner approved software development but deferred camera testing until an official backup exists. The identity inspector is implemented and compiled; no discovery or USB session was executed. Opening its sheet does not start discovery. Its only raw command is GetDeviceInfo with no data-out payload; it cannot select banks or write settings. No camera-backup archive or restore feature is included.
+
+## Owner-led import — 27 November 2026
+
+The owner confirmed an untouched official backup and authorized trying camera-to-app recipe retrieval, including the explained selector changes. The manual utility read C1–C4 and restored the original selector with read-back verification. No recipe-setting or backup restoration test was authorized or performed. This supersedes the earlier deferred status for this bounded import only. See CAMERA_IMPORT_VALIDATION.md; sending recipes to the camera remains outside the implemented scope.

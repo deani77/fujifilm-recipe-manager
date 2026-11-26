@@ -37,3 +37,7 @@ strict payload decoders. They have no transport dependency, command encoder,
 selector API or writer. CameraInspector still sends only its fixed identity
 request. The reported X-M5 profile is explicitly not locally hardware-validated.
 See [USB_PROTOCOL.md](USB_PROTOCOL.md) for evidence and the next boundaries.
+
+## Manual camera import — 27 November 2026
+
+RecipeCore now also contains selector-only command framing, response validation, a serialized four-bank reader and provisional display decoding with raw-value retention. The separate RecipeCameraImport executable owns native ImageCaptureCore discovery/session/callbacks and exports app-compatible JSON; it is not started by the UI or tests. The app's existing JSON importer handles loading the result. CameraInspector remains identity-only, with corrected native callback transaction correlation. See CAMERA_IMPORT_VALIDATION.md.
